@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div style={{ padding: "1rem" }}>
-      <h1>KartingRM – Sistema de Gestión de Reservas de Karting</h1>
+      <h1>KartingRM – HOLA MUNDO</h1>
 
       <p>
         KartingRM es una aplicación web que permite a los clientes reservar
