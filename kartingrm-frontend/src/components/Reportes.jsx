@@ -84,7 +84,7 @@ export default function Reportes() {
           </select>
         </div>
         <button onClick={fetchDatos} disabled={cargando}>
-          {cargando ? "Cargando…" : "Generar"}
+          {cargando ? "Cargando…" : "Generar Reporte"}
         </button>
       </div>
 
