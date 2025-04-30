@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  # Frontend services
+  frontend1:
+    image: diego9028/kartingrm-frontend:latest
+    networks:
+      - frontend-network
+
+  frontend2:
+    image: diego9028/kartingrm-frontend:latest
+    networks:
+      - frontend-network
+
+  frontend3:
+    image: diego9028/kartingrm-frontend:latest
+    networks:
+      - frontend-network
+
+  # Backend services
+  backend1:
+    image: diego9028/kartingrm-backend:latest
+    environment:
+      - DB_HOST=postgres-container
+      - MAIL_USERNAME=kartingsystemusach@gmail.com
+      - MAIL_PASSWORD=exor ggik hfnt dtnb
+    networks:
+      - backend-network
+
+  backend2:
+    image: diego9028/kartingrm-backend:latest
+    environment:
+      - DB_HOST=postgres-container
+      - MAIL_USERNAME=kartingsystemusach@gmail.com
+      - MAIL_PASSWORD=exor ggik hfnt dtnb
+    networks:
+      - backend-network
+
+  backend3:
+    image: diego9028/kartingrm-backend:latest
+    environment:
+      - DB_HOST=postgres-container
+      - MAIL_USERNAME=kartingsystemusach@gmail.com
+      - MAIL_PASSWORD=exor ggik hfnt dtnb
+    networks:
+      - backend-network
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      - POSTGRES_DB=kartingrm
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=grupo4
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  # Nginx for frontend load balancing
+  nginx-frontend:
+    image: nginx:stable-alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx-frontend.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend1
+      - frontend2
+      - frontend3
+    networks:
+      - frontend-network
+
+  # Nginx for backend load balancing
+  nginx-backend:
+    image: nginx:stable-alpine
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./nginx-backend.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+    networks:
+      - backend-network
+
+volumes:
+  pgdata:
+
+networks:
+  frontend-network:
+  backend-network:

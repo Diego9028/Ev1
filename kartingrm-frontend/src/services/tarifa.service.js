@@ -1,0 +1,3 @@
+import api from '../http-common';
+export const getAll = () => api.get('/api/tarifas');           // lista
+export default { getAll };
