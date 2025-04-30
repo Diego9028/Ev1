@@ -1,6 +1,3 @@
-// Reportes.jsx – componente para mostrar ingresos por vueltas o por número de personas
-// Basado en el estilo y "look & feel" sencillo de RackSemanal.jsx.
-
 import { useState } from "react";
 import axios from "../http-common";
 import dayjs from "dayjs";
@@ -11,17 +8,16 @@ dayjs.extend(isSameOrBefore);
 dayjs.locale("es");
 
 export default function Reportes() {
-  // Estados para filtros
+
   const [inicioMes, setInicioMes] = useState(dayjs().startOf("month").format("YYYY-MM"));
   const [finMes, setFinMes] = useState(dayjs().format("YYYY-MM"));
-  const [tipo, setTipo] = useState("vueltas"); // "vueltas" | "personas"
+  const [tipo, setTipo] = useState("vueltas"); 
 
-  // Datos estructurados: { criterio: { ["MMM YYYY"]: valor, total: valor } }
+
   const [datos, setDatos] = useState({});
-  const [meses, setMeses] = useState([]); // Array de meses (label)
+  const [meses, setMeses] = useState([]); 
   const [cargando, setCargando] = useState(false);
 
-  /* Utilidades */
   const generarListaMeses = (from, to) => {
     const lista = [];
     let cursor = from.clone();
@@ -42,7 +38,7 @@ export default function Reportes() {
 
     const endpointBase = tipo === "vueltas" ? "/api/reportes/ingresos-vueltas" : "/api/reportes/ingresos-personas";
 
-    // Traemos datos mes a mes y los organizamos
+
     const resultadosTemp = {};
 
     for (const mes of listaMeses) {
@@ -66,12 +62,11 @@ export default function Reportes() {
     setCargando(false);
   };
 
-  /* Render */
+
   return (
     <div style={{ padding: "2rem" }}>
       <h2>Reportes de ingresos</h2>
 
-      {/* Filtros */}
       <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
         <div>
           <label>Inicio&nbsp;</label>
@@ -93,7 +88,6 @@ export default function Reportes() {
         </button>
       </div>
 
-      {/* Tabla de resultados */}
       {Object.keys(datos).length > 0 && (
         <div style={{ overflowX: "auto" }}>
           <table style={{ borderCollapse: "collapse", width: "100%" }}>
@@ -120,7 +114,7 @@ export default function Reportes() {
                   </td>
                 </tr>
               ))}
-              {/* Fila total general */}
+  
               <tr style={{ background: "#dee2e6", fontWeight: "bold" }}>
                 <td style={{ padding: "0.5rem", border: "1px solid #ccc" }}>TOTAL</td>
                 {meses.map(m => {

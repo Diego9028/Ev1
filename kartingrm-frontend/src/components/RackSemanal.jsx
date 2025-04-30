@@ -28,7 +28,7 @@ export default function RackSemanal() {
 
   useEffect(() => { fetchSemana(primerDia); }, [primerDia, fetchSemana]);
 
-  /* ------------- util para saber si la reserva pisa la celda ------------- */
+
   const reservaEnCelda = (dayIdx, hour) => {
     const cellStart = primerDia.add(dayIdx,"day").hour(hour).minute(0);
     const cellEnd   = cellStart.add(1,"hour");
@@ -56,12 +56,11 @@ export default function RackSemanal() {
     }
   };
 
-  /* -------------------- render -------------------- */
+
   return (
     <div style={{ padding:"2rem" }}>
       <h2>Rack semanal</h2>
 
-      {/* Navegador de semanas */}
       <div style={{display:"flex",justifyContent:"space-between",
                    alignItems:"center",marginBottom:"1rem"}}>
         <button onClick={retrocederSemana}>← Semana anterior</button>
@@ -71,12 +70,10 @@ export default function RackSemanal() {
         <button onClick={avanzarSemana}>Semana siguiente →</button>
       </div>
 
-      {/* Grilla */}
       <div style={{display:"grid",
                    gridTemplateColumns:"100px repeat(7, 1fr)",
                    gap:"4px"}}>
 
-        {/* cabecera días */}
         <div></div>
         {DAYS.map((d,i)=>(
           <div key={i} style={{fontWeight:"bold",textAlign:"center"}}>
@@ -87,7 +84,6 @@ export default function RackSemanal() {
           </div>
         ))}
 
-        {/* filas por hora */}
         {HOURS.map(hour=>(
           <Fragment key={hour}>
             <div style={{fontWeight:"bold",textAlign:"center"}}>{hour}:00</div>

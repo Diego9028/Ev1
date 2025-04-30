@@ -31,14 +31,13 @@ export default function ReservasNueva() {
     e.preventDefault();
 
     try {
-      // 1. Buscar cliente por email
+
       const clienteRes = await axios.get("/api/clientes/email", {
         params: { email: form.email }
       });
 
       const clienteId = clienteRes.data.id;
 
-      // 2. Armar y enviar la reserva
       const reservaPayload = {
         clientePrincipal: { id: clienteId },
         clientes: [{ id: clienteId }],

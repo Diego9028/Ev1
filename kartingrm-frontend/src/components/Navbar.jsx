@@ -18,8 +18,6 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: 'primary.main' }}>
         <Toolbar>
-
-          {/* Botón hamburguesa */}
           <IconButton
             size="large"
             edge="start"
@@ -31,16 +29,13 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
 
-          {/* Título de la app */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             KartingRM – Gestión de Reservas
           </Typography>
 
-          {/* Si luego añades auth, aquí iría el botón Login/Logout */}
         </Toolbar>
       </AppBar>
 
-      {/* Side-drawer con los links */}
       <Sidemenu open={open} toggleDrawer={toggleDrawer} />
     </Box>
   );

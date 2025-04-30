@@ -4,7 +4,7 @@ import App from "./App";
 
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
-// Tema claro por defecto
+
 const theme = createTheme({
   palette: {
     mode: "light",
