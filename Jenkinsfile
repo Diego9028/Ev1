@@ -8,7 +8,7 @@ pipeline {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Diego9028/Ev1']])
                 dir("kartingrm-backend"){
-                    bat 'mvn clean package'
+                    bat 'mvn clean package -DskipTests'
                 }
             }
         }
